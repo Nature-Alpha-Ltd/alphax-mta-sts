@@ -36,7 +36,7 @@ These live at alphax.ai's actual DNS provider (`ns1/ns2.atom.com`), not Cloudfla
 | Type | Name | Value |
 |------|------|-------|
 | CNAME | `mta-sts.alphax.ai` | `alphax-mta-sts.pages.dev` |
-| TXT | `_mta-sts.alphax.ai` | `v=STSv1; id=2026080701` |
+| TXT | `_mta-sts.alphax.ai` | `v=STSv1; id=1786110190643` |
 | TXT | `_smtp._tls.alphax.ai` | `v=TLSRPTv1; rua=mailto:6511556403086@tls.dmarcly.com` |
 
 The CNAME verifies the Cloudflare custom domain and serves the policy file. The two TXT records are what actually turn MTA-STS and TLS-RPT on for mail sent to alphax.ai - without them, the policy file being reachable does nothing.
