@@ -16,11 +16,13 @@ Current policy:
 ```
 version: STSv1
 mode: testing
-mx: mail.protection.outlook.com
+mx: *.mail.protection.outlook.com
 max_age: 604800
 ```
 
 `mode: testing` means receivers report failures without enforcing TLS yet. Once TLS-RPT reports (see below) show no unexpected failures for a couple of weeks, switch to `mode: enforce` and bump the `id` value in the `_mta-sts.alphax.ai` DNS TXT record (see below) so resolvers pick up the change.
+
+Note: the mx value above uses a wildcard (`*.mail.protection.outlook.com`) rather than the bare hostname, because Microsoft 365's real MX record for a tenant is tenant-specific (e.g. `alphax-ai.mail.protection.outlook.com`), not the literal `mail.protection.outlook.com`. Without the wildcard, MTA-STS validators (e.g. MXToolbox) fail with "No MTA-STS Policy MX Pattern Match" even though the record and policy file are otherwise valid. Whenever this file changes, bump the `id` value in the `_mta-sts.alphax.ai` TXT record too, so resolvers know to refetch the policy.
 
 ## Hosting: Cloudflare Pages
 
