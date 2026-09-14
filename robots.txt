@@ -1,0 +1,15 @@
+# This host exists solely to serve the MTA-STS policy at
+# /.well-known/mta-sts.txt (RFC 8461). It has no content for search
+# engines, so crawlers are asked to stay off it entirely.
+#
+# Without this file, Cloudflare serves a default robots.txt containing
+# only comments and no directives, so nothing was actually disallowed.
+# Googlebot was reaching the site root, which has no index page, and
+# reporting it as "Not found (404)" in the alphax.ai Search Console
+# domain property (that property covers every subdomain).
+#
+# This does not affect MTA-STS. Sending mail servers fetch the policy
+# directly per RFC 8461 and never consult robots.txt.
+
+User-agent: *
+Disallow: /
